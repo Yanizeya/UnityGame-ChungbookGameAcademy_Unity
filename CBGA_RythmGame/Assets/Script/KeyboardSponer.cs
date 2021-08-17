@@ -45,7 +45,7 @@ public class KeyboardSponer : MonoBehaviour
                 }
                 keyboardPrefab.transform.Find("A").GetComponent<Text>().text = keyboardSpell[i][j].ToUpper();
                 GameObject keyboard = Instantiate(keyboardPrefab, currentLocation, sponeRotation);
-                keyboard.transform.parent = canvas.transform;
+                keyboard.transform.SetParent(canvas.transform);
                 //키보드에 태그를 부여함
                 keyboard.name = keyboardSpell[i][j];
                 currentLocation.x += keyboardSize + keyboardSpace;

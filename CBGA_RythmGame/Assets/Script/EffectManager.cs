@@ -1,16 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EffectManager : MonoBehaviour
 {
-    public Animator ani;
+    public Animator noteHitAni;
+    public Animator scoreAni;
     string hit = "Hit";
-    string[] validKey = NoteTouchSenser.validKey;
+    string[] validKey = Note.validKeyArr;
+    public Sprite[] scoreSprite;
+
+    enum scoreType{
+       Perfect,
+       Good,
+       Cool,
+       Normal,
+       Bad,
+       Miss,
+       EnumMax
+    }
     // Start is called before the first frame update
     void Start()
     {
-        ani = GetComponent<Animator>();
+        noteHitAni = transform.Find("noteHitEffect").GetComponent<Animator>();
+        scoreAni = transform.Find("scoreEffect").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -19,9 +33,37 @@ public class EffectManager : MonoBehaviour
         
     }
 
+    public void effect(string scoreZonename)
+    {
+        noteHitEffect();
+        scoreEffect(scoreZonename);
+    }
     public void noteHitEffect()
     {
-        Debug.Log("noteAniOn : " + Time.time);
-        ani.SetTrigger("Hit");
+        //Debug.Log("noteAniOn : " + Time.time);
+        noteHitAni.SetTrigger("Hit");
+    }
+
+    public void scoreEffect(string scoreZonename)
+    {
+        int type = 0;
+        switch (scoreZonename)
+        {
+            case "Perfect":
+                type = (int)scoreType.Perfect;
+                break;
+            case "Nice":
+                type = (int)scoreType.Cool;
+                break;
+            case "Good":
+                type = (int)scoreType.Good;
+                break;
+            case "Bad":
+                type = (int)scoreType.Bad;
+                break;
+        }
+
+        transform.Find("scoreEffect").GetComponent<Image>().sprite = scoreSprite[type];
+        scoreAni.SetTrigger("Hit");
     }
 }
