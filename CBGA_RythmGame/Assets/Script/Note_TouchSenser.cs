@@ -6,14 +6,15 @@ public class Note_TouchSenser : MonoBehaviour
 {
     string[] scoreZoneArr = InputManager.scoreZoneArr;
     Note note;
-    EffectManager effectManager;
+    InputManager inputManager;
     string keyString;
-
+    string scoreZone;
     public bool touchSenserTrigger = false;
     // Start is called before the first frame update
     void Start()
     {
         note = GetComponentInParent<Note>();
+        inputManager = GameObject.Find("InputManager").GetComponent<InputManager>();
     }
 
     // Update is called once per frame
@@ -29,9 +30,9 @@ public class Note_TouchSenser : MonoBehaviour
         {
             if (other.name == scoreZoneArr[i])
             {
-            //Debug.Log("#Note_TouchSenser - destroyNote");
-            PlayEffect(scoreZoneArr[i]);
-            note.DestroyNote();
+                //Debug.Log("#Note_TouchSenser - destroyNote");
+                setScoreZone(scoreZoneArr[i]);
+                  note.DestroyNote();
             }
         }
     }
@@ -42,10 +43,12 @@ public class Note_TouchSenser : MonoBehaviour
         GetComponent<BoxCollider>().enabled = true;
     }
 
-    void PlayEffect(string scoreZone)
+    public void setScoreZone(string scoreZone)
     {
-        //Debug.Log("#Note_TouchSenser - keyString : " + keyString);
-        effectManager = GameObject.Find(keyString).GetComponent<EffectManager>();
-        effectManager.Effect(scoreZone);
+        this.scoreZone = scoreZone;
+    }
+    public string getScoreZone()
+    {
+        return this.scoreZone;
     }
 }

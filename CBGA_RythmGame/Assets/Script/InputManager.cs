@@ -9,7 +9,9 @@ public class InputManager : MonoBehaviour
     public static string[] scoreZoneArr = new string[] { "Perfect", "Nice", "Good", "Bad" };
 
     static AudioManager audioManager;
+    EffectManager effectManager;
 
+    bool holdingDown = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,24 +23,38 @@ public class InputManager : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            audioManager.PlayAudio(true, keyString);
-            keyString = Input.inputString;
+            holdingDown = true;
+            if (Input.anyKeyDown)
+            {
+                keyString = Input.inputString;
 
-            for (int i = 0; i < validKeyArr.Length; i++)
-                if (keyString == validKeyArr[i])
-                {
-
-                    GameObject curNote = GameObject.FindGameObjectWithTag("curNote");
-                    curNote.transform.Find("TouchSenser").GetComponent<Note_TouchSenser>().TouchSenserOn(keyString);
-                    Debug.Log("#InputManager - keyString : " + keyString);
-                    //Debug.Log("#InputManager - touchSenser trigger : " + curNote.transform.Find("TouchSenser").GetComponent<Note_TouchSenser>().touchSenserTrigger);
-
-                }
+                for (int i = 0; i < validKeyArr.Length; i++)
+                    if (keyString == validKeyArr[i])
+                    {
+                        GameObject curNote = GameObject.FindGameObjectWithTag("curNote");
+                        Note_TouchSenser curNoteTouchSenser = curNote.transform.Find("TouchSenser").GetComponent<Note_TouchSenser>();
+                        curNoteTouchSenser.TouchSenserOn(keyString);
+                        string scoreZone = curNoteTouchSenser.getScoreZone();
+                        PlayEffect(scoreZone);
+                        audioManager.PlayAudio(keyString);
+                        //Debug.Log("#InputManager - keyString : " + keyString);
+                    }
+            }
         }
-        else
+        //Input.anyKeyDown을 구현하기 위한 코드
+        if (!Input.anyKey && holdingDown)
         {
-            audioManager.PlayAudio(false, keyString);
+            Debug.Log("#InputManager - anyKeyDown");
+            holdingDown = false;
+            audioManager.StopAudio(keyString);
         }
-    }
 
+
+        
+    }
+    public void PlayEffect(string scoreZone)
+    {
+        effectManager = GameObject.Find(keyString).GetComponent<EffectManager>();
+        effectManager.Effect(scoreZone);
+    }
 }

@@ -15,7 +15,7 @@ public class KeyboardSponer : MonoBehaviour
     Vector3 currentLocation;
    
 
-    string[][] keyboardSpell = { new string[]{ "a", "s", "d", "f", "g", "h", "j", "k", "l", ";" }, new string[]{ "z", "x", "c", "v", "b", "n", "m", ",", "." }, new string[]{ } };
+    static public string[][] keyboardSpell = { new string[]{ "a", "s", "d", "f", "g", "h", "j", "k", "l", ";" }, new string[]{ "z", "x", "c", "v", "b", "n", "m", ",", "." }, new string[]{ } };
     // Start is called before the first frame update
     void Start()
     {
