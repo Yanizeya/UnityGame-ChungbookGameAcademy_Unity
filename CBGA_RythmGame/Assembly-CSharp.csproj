@@ -53,14 +53,16 @@
     <UnityVersion>2020.3.16f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Note_Move.cs" />
     <Compile Include="Assets\Script\EffectManager.cs" />
     <Compile Include="Assets\Script\Test\Test.cs" />
     <Compile Include="Assets\Script\NoteSponer.cs" />
     <Compile Include="Assets\Script\Note_TouchSenser.cs" />
     <Compile Include="Assets\Script\Note.cs" />
-    <Compile Include="Assets\Script\KeyboardSponer.cs" />
-    <Compile Include="Assets\Script\Note_Move.cs" />
     <Compile Include="Assets\Script\EndZone.cs" />
+    <Compile Include="Assets\Script\KeyboardSponer.cs" />
+    <Compile Include="Assets\Script\AudioManager.cs" />
+    <Compile Include="Assets\Script\InputManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\리듬게임 에셋\Read Me.txt" />

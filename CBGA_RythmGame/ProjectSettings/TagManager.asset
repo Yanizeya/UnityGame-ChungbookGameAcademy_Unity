@@ -4,16 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - a
-  - s
-  - d
-  - f
-  - j
-  - k
-  - l
-  - ;
-  - g
-  - h
+  - note
+  - curNote
   layers:
   - Default
   - TransparentFX

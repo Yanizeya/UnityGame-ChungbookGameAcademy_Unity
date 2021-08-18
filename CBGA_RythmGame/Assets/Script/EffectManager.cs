@@ -8,7 +8,7 @@ public class EffectManager : MonoBehaviour
     public Animator noteHitAni;
     public Animator scoreAni;
     string hit = "Hit";
-    string[] validKey = Note.validKeyArr;
+    string[] validKey = InputManager.validKeyArr;
     public Sprite[] scoreSprite;
 
     enum scoreType{
@@ -33,21 +33,21 @@ public class EffectManager : MonoBehaviour
         
     }
 
-    public void effect(string scoreZonename)
+    public void Effect(string scoreZone)
     {
-        noteHitEffect();
-        scoreEffect(scoreZonename);
+        NoteHitEffect();
+        ScoreEffect(scoreZone);
     }
-    public void noteHitEffect()
+    public void NoteHitEffect()
     {
         //Debug.Log("noteAniOn : " + Time.time);
         noteHitAni.SetTrigger("Hit");
     }
 
-    public void scoreEffect(string scoreZonename)
+    public void ScoreEffect(string scoreZone)
     {
         int type = 0;
-        switch (scoreZonename)
+        switch (scoreZone)
         {
             case "Perfect":
                 type = (int)scoreType.Perfect;

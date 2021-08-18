@@ -46,7 +46,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 667183614422165789}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 100, y: 1, z: 1}
@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47a4cb4c690d1b44a7cc773695a3d5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchSenserTrigger: 0
 --- !u!54 &6225795844782644260
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -169,7 +170,7 @@ GameObject:
   - component: {fileID: 7192122157531565357}
   m_Layer: 5
   m_Name: Note
-  m_TagString: Untagged
+  m_TagString: note
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,7 +204,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2247007559824870891}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 100, y: 1, z: 1}
