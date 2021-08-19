@@ -18,9 +18,9 @@ public class EndZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "note")
+        if (other.gameObject.tag == "note" || other.gameObject.tag == "curNote")
         {
-            //Debug.Log("#EndZone - touch endZone");
+            Debug.Log("#EndZone - touch endZone");
             other.GetComponent<Note_Move>().endZoneTrigger = false;
         }
     }

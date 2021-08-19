@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    //string[] PianoScales = { "do", "re", "mi", "fa", "sol" };
+    [System.Serializable]
+    public class PianoScaleArr
+    {
+        public AudioClip[] pianoScale;
+    }
+    public PianoScaleArr[] audioClipArr;
+
     AudioSource audio;
-    public AudioClip[] audioClip;
     string[] validKeyArr;
     bool audioPlayState;
     bool audioing = false;
     string keyString;
-    string[][] keyboardSpell = KeyboardSponer.keyboardSpell;
+    string[][] abledKeyboardSpell = KeyboardSponer.abledKeyboardSpell; //{ new string[] { "a", "s", "d", "f", "j", "k", "l", ";" } , new string[] { "w", "e", "t", "i", "o" } };
+
+    int pianoCCode = 4-1; //기본은 c4. 배열은 0부터 시작하므로 -1
     // Start is called before the first frame update
     void Start()
     {
@@ -25,14 +32,15 @@ public class AudioManager : MonoBehaviour
     {
         if(audioPlayState == true)
         {
-            
             if (audioing == false)
             {
-                for (int i = 0; i < 5; i++)
-                    if (keyboardSpell[0][i] == keyString)
-                    {
-                        audio.clip = audioClip[i];
-                    }
+                for (int i = 0; i < abledKeyboardSpell.Length; i++)
+                    for(int j = 0; j< abledKeyboardSpell[i].Length; j++)
+                        if (abledKeyboardSpell[i][j] == keyString)
+                        {
+                            Debug.Log("#AudioManager - j : " + j);
+                            audio.clip = audioClipArr[pianoCCode].pianoScale[i*8+j];
+                        }
                 audio.volume = 1;
                 audio.Play();
                 audioing = true;

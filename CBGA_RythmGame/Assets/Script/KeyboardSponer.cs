@@ -15,7 +15,8 @@ public class KeyboardSponer : MonoBehaviour
     Vector3 currentLocation;
    
 
-    static public string[][] keyboardSpell = { new string[]{ "a", "s", "d", "f", "g", "h", "j", "k", "l", ";" }, new string[]{ "z", "x", "c", "v", "b", "n", "m", ",", "." }, new string[]{ } };
+    static public string[][] keyboardSpell = { new string[] { "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "["}, new string[] { "a", "s", "d", "f", "g", "h", "j", "k", "l", ";" }, new string[] { "z", "x", "c", "v", "b", "n", "m", ",", "." }};
+    static public string[][] abledKeyboardSpell = { new string[] { "a", "s", "d", "f", "j", "k", "l", ";" } , new string[] { "w", "e", "t", "i", "o" } };
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +25,10 @@ public class KeyboardSponer : MonoBehaviour
         canvas = GameObject.Find("1LayerCanvas");
 
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < keyboardSpell.Length; i++)
         {
             currentLocation = sponeLocation;
+            //Debug.Log("#KeyboardSponer - length : " + keyboardSpell[i].Length);
             for (int j = 0; j < keyboardSpell[i].Length; j++)
             {
                 if (j == 0) //처음 스포너 위치 설정
@@ -34,19 +36,23 @@ public class KeyboardSponer : MonoBehaviour
                     switch (i)
                     {
                         case 0:
-                            currentLocation.x -= keyboardSize * 4.5f + keyboardSpace * 4f;
+                            currentLocation.x -= keyboardSize * 5f + keyboardSpace * 4f;
+                            currentLocation.y += keyboardSize + keyboardSpace;
                             break;
                         case 1:
+                            currentLocation.x -= keyboardSize * 4.5f + keyboardSpace * 4f;
+                            break;
+                        case 2:
                             currentLocation.x -= keyboardSize * 4f + keyboardSpace * 4f;
                             currentLocation.y -= keyboardSize + keyboardSpace;
                             break;
                     }
                    
                 }
-                keyboardPrefab.transform.Find("A").GetComponent<Text>().text = keyboardSpell[i][j].ToUpper();
+                keyboardPrefab.transform.Find("KeyText").GetComponent<Text>().text = keyboardSpell[i][j].ToUpper();
                 GameObject keyboard = Instantiate(keyboardPrefab, currentLocation, sponeRotation);
                 keyboard.transform.SetParent(canvas.transform);
-                //키보드에 태그를 부여함
+                //키보드에 이름을 부여함
                 keyboard.name = keyboardSpell[i][j];
                 currentLocation.x += keyboardSize + keyboardSpace;
             }
