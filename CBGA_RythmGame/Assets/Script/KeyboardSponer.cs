@@ -9,7 +9,7 @@ public class KeyboardSponer : MonoBehaviour
     public GameObject keyboardPrefab;
     public GameObject canvas;
     public static float keyboardSize = 102 * 0.5f; //이미지의 픽셀크기 * localScale의 크기
-    public static float keyboardSpace = 10;
+    public static float keyboardSpace = 20;
     Vector3 sponeLocation;
     Quaternion sponeRotation;
     Vector3 currentLocation;
